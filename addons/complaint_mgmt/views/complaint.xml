@@ -1,0 +1,143 @@
+<odoo>
+    <record id="view_complaint_form" model="ir.ui.view">
+        <field name="name">complaint.form</field>
+        <field name="model">tenant.complaint</field>
+        <field name="arch" type="xml">
+            <form string="Tenant Complaint">
+                <header>
+                    <field name="question" invisible="1"/>
+                    <button name="reply_email" id="reply_email" data-hotkey="r"
+                    string="Send Answer" class="btn-primary" 
+                    type="object"
+                    invisible="not question"/>
+                    <field name="stage_id" invisible="1"/>
+                    <field name="stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <h2>
+                        <field name="name"/>
+                    </h2>
+                    <group colspan="2">
+                        <group>
+                            <field name="tenant_name"/>
+                            <field name="email"/>
+                            <field name="address"/>
+                        </group>
+                        <group>
+                            <field name="assigned_to"/>
+                            <field name="type_id"/>
+                            <field name="action_plan" placeholder="Write you action plan here. If this complaint is question then simply answer here..."/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                        <field name="outcome" placeholder="Fill it up when you get any outcome of this complaint..."/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_complaint_tree" model="ir.ui.view">
+        <field name="name">complaint.tree</field>
+        <field name="model">tenant.complaint</field>
+        <field name="arch" type="xml">
+            <tree string="Tenant Complaints">
+                <field name="name"/>
+                <field name="tenant_name"/>
+                <field name="email"/>
+                <field name="address"/>
+                <field name="type_id"/>
+                <field name="stage_id"/>
+                <field name="assigned_to"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_complaint_stage_form" model="ir.ui.view">
+        <field name="name">complaint.stage.form</field>
+        <field name="model">complaint.stage</field>
+        <field name="arch" type="xml">
+            <form string="Complaint Stage">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_complaint_stage_tree" model="ir.ui.view">
+        <field name="name">complaint.stage.tree</field>
+        <field name="model">complaint.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Complaint Stages">
+                <field name="name"/>
+                <field name="sequence"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_complaint_type_form" model="ir.ui.view">
+        <field name="name">complaint.type.form</field>
+        <field name="model">complaint.type</field>
+        <field name="arch" type="xml">
+            <form string="Complaint Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="question"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_complaint_type_tree" model="ir.ui.view">
+        <field name="name">complaint.type.tree</field>
+        <field name="model">complaint.type</field>
+        <field name="arch" type="xml">
+            <tree string="Complaint Types">
+                <field name="name"/>
+                <field name="question"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_complaint_root" name="Complaints" sequence="10"/>
+
+    <menuitem id="menu_complaint" name="Complaints" parent="menu_complaint_root" sequence="10"/>
+    <menuitem id="menu_complaint_stage" name="Complaint Stages" parent="menu_complaint_root" sequence="20"/>
+    <menuitem id="menu_complaint_type" name="Complaint Types" parent="menu_complaint_root" sequence="30"/>
+
+    <record id="action_complaint" model="ir.actions.act_window">
+        <field name="name">Complaints</field>
+        <field name="res_model">tenant.complaint</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_complaint_action" parent="menu_complaint" action="action_complaint" sequence="10"/>
+
+    <record id="action_complaint_stage" model="ir.actions.act_window">
+        <field name="name">Complaint Stages</field>
+        <field name="res_model">complaint.stage</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_complaint_stage_action" parent="menu_complaint_stage" action="action_complaint_stage" sequence="10"/>
+
+    <record id="action_complaint_type" model="ir.actions.act_window">
+        <field name="name">Complaint Types</field>
+        <field name="res_model">complaint.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_complaint_type_action" parent="menu_complaint_type" action="action_complaint_type" sequence="10"/>
+</odoo>

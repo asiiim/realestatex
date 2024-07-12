@@ -1,0 +1,12 @@
+<odoo>
+    <record id="question" model="complaint.type">
+        <field name="name">Question</field>
+        <field name="question">True</field>
+    </record>
+    <record id="electrical_issue" model="complaint.type">
+        <field name="name">Electrical Issue</field>
+    </record>
+    <record id="heating_issue" model="complaint.type">
+        <field name="name">Heating Issue</field>
+    </record>
+</odoo>

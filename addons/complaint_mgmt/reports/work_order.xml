@@ -1,0 +1,49 @@
+<odoo>
+    <!-- Define the Work Order Report Template -->
+    <odoo>
+        <!-- Define the Report Action -->
+        <record id="action_report_complaint_workorder" model="ir.actions.report">
+            <field name="name">Work Order</field>
+            <field name="model">tenant.complaint</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">complaint_mgmt.report_complaint_workorder</field>
+            <field name="report_file">complaint_mgmt.report_complaint_workorder</field>
+            <field name="paperformat_id"
+                ref="complaint_mgmt.workorder_pf" />
+            <field name="print_report_name">'Work Order - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_tenant_complaint"/>
+            <field name="binding_type">report</field>
+        </record>
+        <template id="report_complaint_workorder_docs">
+            <t t-call="web.external_layout">
+                <div class="page" style="font-family: 'Arial', sans-serif; font-size: 11pt; margin: 2.5cm;">
+                    <div class="customer-info" style="margin-bottom: 2cm;">
+                        <p><strong>Date: </strong><span t-field="doc.create_date"/></p>
+                        <p><strong>Customer: </strong><span t-field="doc.tenant_name"/></p>
+                        <p><strong>Complaint No.: </strong><span t-field="doc.name"/></p>
+                        <p><strong>Address: </strong><span t-field="doc.address"/></p>
+                        <strong>Email: </strong><span t-field="doc.email"/>
+                    </div>
+                    <div class="content" style="margin-bottom: 2cm;">
+                        <p><strong>Complaint Type:</strong> <span t-field="doc.type_id"/></p>
+                        <p><strong>Description:</strong></p>
+                        <p t-field="doc.description"/>
+                        <p><strong>Action Plan:</strong></p>
+                        <p t-field="doc.action_plan"/>
+                    </div>
+                    <div class="footer" style="text-align: center; font-size: 9pt;">
+                        <p>Thank you for your attention.</p>
+                        <p>RealEstateX</p>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <template id="report_complaint_workorder">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="complaint_mgmt.report_complaint_workorder_docs" t-lang="doc.assigned_to.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </odoo>
+</odoo>
