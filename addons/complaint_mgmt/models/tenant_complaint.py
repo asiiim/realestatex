@@ -51,7 +51,7 @@ class TenantComplaint(models.Model):
             # Send email to customer representative.
             subject = _('New Complaint Assignment: %s') % (values['name'])
             body = '''
-            Dear <b>%s</b><br/>,
+            Dear <b>%s</b>,<br/>
             
             You have been assigned to new complaint <b>%s</b>.<br/>
             Please check and take needful action on it.<br/>
