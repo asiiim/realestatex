@@ -16,7 +16,7 @@
         'data/ir_sequence.xml',
         'data/complaint_stages.xml',
         'data/complaint_types.xml',
-        'data/website_data.xml',
+        'data/website_menu.xml',
         'reports/paper_formats.xml',
         'reports/work_order.xml',
     ],

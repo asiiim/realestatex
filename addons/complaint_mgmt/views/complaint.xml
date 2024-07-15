@@ -26,7 +26,7 @@
                         <group>
                             <field name="assigned_to"/>
                             <field name="type_id"/>
-                            <field name="action_plan" placeholder="Write you action plan here. If this complaint is question then simply answer here..."/>
+                            <field name="action_plan" placeholder="Write your action plan here. If this complaint is question then simply answer here..."/>
                         </group>
                     </group>
                     <group>
